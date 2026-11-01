@@ -1,4 +1,11 @@
 (() => {
+  const motionToggle = document.querySelector('.motion-toggle');
+  motionToggle.hidden = false;
+  motionToggle.addEventListener('click', () => {
+    const paused = document.body.classList.toggle('motion-paused');
+    motionToggle.setAttribute('aria-pressed', String(paused));
+    motionToggle.textContent = paused ? 'Play animation' : 'Pause animation';
+  });
   const steps = [...document.querySelectorAll('[data-step]')];
   const replay = document.querySelector('.replay');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -21,6 +28,8 @@
     }, { threshold: 0.2 });
     observer.observe(document.querySelector('.workflow'));
   }
-  reduced.addEventListener('change', clear);
+  const syncMotion = () => { clear(); motionToggle.hidden = reduced.matches; };
+  syncMotion();
+  reduced.addEventListener('change', syncMotion);
   window.addEventListener('pagehide', clear);
 })();
