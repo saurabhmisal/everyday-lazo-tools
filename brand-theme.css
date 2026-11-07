@@ -33,3 +33,5 @@ body .input-note:nth-child(3), body .source-button { background:#2b3b30; color:v
 body .input-note>span, body .step-number { color:var(--brand-muted); }
 #pc-site .pc-button.pc-primary { background:var(--brand-accent); color:var(--brand-text); border-color:var(--brand-accent); }
 #pc-site .pc-button.pc-primary:hover { background:#25674f; }
+
+body .hero-copy .release-note { font-size:14px; line-height:1.5; color:var(--brand-muted); margin:16px 0 0; }
