@@ -11,3 +11,15 @@ body{background:radial-gradient(ellipse at 50% 5%,#23322c 0,transparent 45%),var
 @media(prefers-reduced-motion:reduce){.character-art{background-position:var(--pose-x) 0%;transform:none}.scene-story *,.scene-story *::after{animation:none!important}}
 
 .note-a{left:auto;right:8%;top:5%}.note-b{right:4%;top:21%}.calm-chip{left:auto;right:7%;top:9%}
+
+/* Stable, single character poses with gentle motion; no stepped frame jumping. */
+.character-art { animation:breathe 8s ease-in-out infinite; will-change:transform; }
+.stressed { background-position:0 0; animation-duration:8s; }
+.relaxed { background-position:100% 0; animation-delay:-2s; }
+.floating-note { animation:none; transform:none; font-size:13px; }
+.calm-chip { font-size:13px; }
+.scene-toolbar,.scene-label { font-size:14px; }
+.scene-label { letter-spacing:.04em; }
+@keyframes breathe { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-3px); } }
+.motion-suspended .scene-story *, .motion-suspended .scene-story *::after { animation-play-state:paused!important; }
+@media(prefers-reduced-motion:reduce) { .character-art { animation:none!important; transform:none!important; } }

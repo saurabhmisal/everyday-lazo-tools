@@ -7,3 +7,8 @@ Target custom domain: https://everyday.lazo.tools/
 Hosting: GitHub Pages, main branch / (root).
 
 DNS at Spaceship: add CNAME host `everyday`, value `saurabhmisal.github.io`, TTL 30 minutes. Preserve apex/www and every other DNS record. HTTPS enforcement must be enabled after GitHub issues the custom-domain certificate.
+
+
+## Lazo design standard
+
+Follow [the shared design principles](docs/DESIGN_PRINCIPLES.md) for palette, Source Sans 3 typography, responsive layout, character identity and accessible motion. The Lazo website owns the shared style source and exports it with `npm run build:family`.
