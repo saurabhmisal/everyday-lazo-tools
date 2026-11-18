@@ -1,0 +1,30 @@
+name: Verify Firebase static staging
+on:
+  pull_request:
+    paths:
+      - 'firebase.json'
+      - 'scripts/prepare-hosting.mjs'
+      - 'docs/FIREBASE_HOSTING.md'
+      - '.github/workflows/firebase-staging.yml'
+permissions:
+  contents: read
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check scripts/prepare-hosting.mjs
+      - run: node scripts/prepare-hosting.mjs
+      - name: Check public asset whitelist
+        run: |
+          test -f .firebase-dist/index.html
+          test -f .firebase-dist/styles.css
+          test -d .firebase-dist/assets
+          test ! -e .firebase-dist/.git
+          test ! -e .firebase-dist/README.md
+          test ! -e .firebase-dist/CNAME
+          test ! -e .firebase-dist/firebase.json
+          ! find .firebase-dist -type f -name '*.dmg' -o -name '*.zip' | grep .
